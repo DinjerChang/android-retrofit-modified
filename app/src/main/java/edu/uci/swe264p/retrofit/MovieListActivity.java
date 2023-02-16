@@ -20,9 +20,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MovieListActivity extends AppCompatActivity {
 
     static final String TAG = MovieListActivity.class.getSimpleName();
-    static final String BASE_URL = "https://api.themoviedb.org/3/";
+    static final String BASE_URL = MainActivity.BASE_URL;
     static Retrofit retrofit = null;
-    final static String API_KEY = "5f7cb29d489bbbb86ca6e6d90f422eb2";
+    final static String API_KEY = MainActivity.API_KEY;
 
     private List<Movie> topRatedMovies;
 
@@ -57,7 +57,7 @@ public class MovieListActivity extends AppCompatActivity {
                 TopRatedResponse topRatedResponse = response.body();
                 assert topRatedResponse != null;
                 topRatedMovies = topRatedResponse.getResults();
-                // send the topRatedMovies data to adapter
+                // construct the adapter with data and set it to the recyclerView
                 recyclerView.setAdapter(new MovieListAdapter(topRatedMovies));
             }
             @Override
